@@ -1,8 +1,8 @@
 from sqlalchemy import ForeignKey, Boolean
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from backend.data.db.models.base import BaseWithCreation
-from backend.data.db.models.user import User
+from data.db.models.base import BaseWithCreation
+from data.db.models.user import User
 
 
 class Whitelist(BaseWithCreation):

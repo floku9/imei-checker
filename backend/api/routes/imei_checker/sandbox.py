@@ -1,11 +1,11 @@
 from typing import Annotated
 from fastapi import APIRouter, Depends, Query
 
-from backend.api.dependencies import get_sandbox_imei_checker_service
-from backend.api.dto.imei_checker import ImeiInfoDTO
-from backend.api.security import get_current_user
-from backend.application.services.imei_checker.sandbox import SandboxImeiCheckerService
-from backend.utils.constants import IMEI_REGEX
+from api.dependencies import get_sandbox_imei_checker_service
+from api.dto.imei_checker import ImeiInfoDTO
+from api.security import get_current_user
+from application.services.imei_checker.sandbox import SandboxImeiCheckerService
+from utils.constants import IMEI_REGEX
 
 sandbox_imei_router = APIRouter(prefix="/sandbox", tags=["IMEI Checker", "sandbox"])
 

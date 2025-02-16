@@ -1,15 +1,14 @@
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
-from backend.application.interactors.imei_checker_client.api import model_description_imei_checker
-from backend.application.services.imei_checker.base import BaseImeiCheckerService
-from backend.application.services.imei_checker.api_based import APIImeiCheckerService
-from backend.application.services.imei_checker.sandbox import SandboxImeiCheckerService
-from backend.application.services.repository.users import UsersService
-from backend.utils.configuration.db import async_session_factory
-from backend.data.repositories.sql.orm.db_models_repositories import WhitelistRepository
-from backend.application.services.repository.whitelist import WhitelistService
-from backend.data.repositories.sql.orm.db_models_repositories import TelegramUserRepository
-from backend.application.interactors.imei_checker_client.sandbox import sandbox_imei_checker_client
+from application.interactors.imei_checker_client.api import model_description_imei_checker
+from application.services.imei_checker.api_based import APIImeiCheckerService
+from application.services.imei_checker.sandbox import SandboxImeiCheckerService
+from application.services.repository.users import UsersService
+from utils.configuration.db import async_session_factory
+from data.repositories.sql.orm.db_models_repositories import WhitelistRepository
+from application.services.repository.whitelist import WhitelistService
+from data.repositories.sql.orm.db_models_repositories import UserRepository
+from application.interactors.imei_checker_client.sandbox import sandbox_imei_checker_client
 
 
 async def get_db_session():
@@ -22,8 +21,8 @@ def get_whitelist_service(session: AsyncSession = Depends(get_db_session)):
     return WhitelistService(repo)
 
 
-def get_telegram_users_service(session: AsyncSession = Depends(get_db_session)):
-    repo = TelegramUserRepository(session)
+def get_users_service(session: AsyncSession = Depends(get_db_session)):
+    repo = UserRepository(session)
     return UsersService(repo)
 
 

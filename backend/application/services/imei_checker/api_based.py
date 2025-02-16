@@ -1,5 +1,5 @@
-from backend.api.dto.imei_checker import ImeiInfoDTO
-from backend.application.services.imei_checker.base import BaseAPIImeiCheckerService
+from api.dto.imei_checker import ImeiInfoDTO
+from application.services.imei_checker.base import BaseAPIImeiCheckerService
 
 
 class APIImeiCheckerService(BaseAPIImeiCheckerService):

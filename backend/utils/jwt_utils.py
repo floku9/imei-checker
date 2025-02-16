@@ -1,6 +1,6 @@
 from datetime import timedelta, datetime, timezone
 from typing import Optional
-from backend.utils.settings import jwt_settings
+from settings import jwt_settings
 import jwt
 
 

@@ -1,6 +1,6 @@
 from fastapi import HTTPException, Security
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-from backend.utils.jwt_utils import decode_jwt_token
+from utils.jwt_utils import decode_jwt_token
 import jwt
 
 bearer = HTTPBearer()

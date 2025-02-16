@@ -1,4 +1,4 @@
-from backend.application.interactors.imei_checker_client.base import BaseImeiCheckerClient
+from application.interactors.imei_checker_client.base import BaseImeiCheckerClient
 
 
 class SandboxImeiCheckerClient(BaseImeiCheckerClient):

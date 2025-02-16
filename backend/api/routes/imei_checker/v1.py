@@ -1,12 +1,12 @@
 from typing import Annotated
 from fastapi import APIRouter, Depends, HTTPException, Query
 
-from backend.api.dependencies import get_imei_checker_service
-from backend.api.dto.imei_checker import ImeiInfoDTO
-from backend.api.security import get_current_user
-from backend.application.services.imei_checker.api_based import APIImeiCheckerService
-from backend.utils.constants import IMEI_REGEX
-from backend.utils.exceptions import RequestException
+from api.dependencies import get_imei_checker_service
+from api.dto.imei_checker import ImeiInfoDTO
+from api.security import get_current_user
+from application.services.imei_checker.api_based import APIImeiCheckerService
+from utils.constants import IMEI_REGEX
+from utils.exceptions import RequestException
 
 v1_imei_router = APIRouter(prefix="/v1", tags=["IMEI Checker", "v1"])
 

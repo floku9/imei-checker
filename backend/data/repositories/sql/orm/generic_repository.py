@@ -3,8 +3,8 @@ from typing import TypeVar, List, Any, Type, Optional
 from sqlalchemy import select, insert, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from backend.data.db.models.base import Base
-from backend.data.repositories.sql.sql_base_repository import SQLBaseRepositoryAsync
+from data.db.models.base import Base
+from data.repositories.sql.sql_base_repository import SQLBaseRepositoryAsync
 
 T = TypeVar("T", bound=Base)
 
@@ -35,13 +35,16 @@ class GenericORMRepository[T](SQLBaseRepositoryAsync):
         stmt = insert(self.model).values(**data).returning(self.model)
         result = await self._session.execute(stmt)
         await self._session.flush()
+        await self._session.commit()
         record = result.scalar_one()
+        await self._session.refresh(record)
         return record
 
     async def update(self, idx: int, data: dict[str, Any]) -> T:
         stmt = update(self.model).where(self.model.id == idx).values(**data).returning(self.model)
         result = await self._session.execute(stmt)
         await self._session.flush()
+        await self._session.commit()
         record = result.scalar_one()
         return record
 
@@ -50,3 +53,4 @@ class GenericORMRepository[T](SQLBaseRepositoryAsync):
         if record:
             await self._session.delete(record)
             await self._session.flush()
+            await self._session.commit()

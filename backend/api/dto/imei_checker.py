@@ -1,4 +1,4 @@
-from backend.api.dto.base import BaseDTO
+from api.dto.base import BaseDTO
 
 
 class ImeiInfoDTO(BaseDTO):

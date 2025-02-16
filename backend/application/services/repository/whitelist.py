@@ -1,4 +1,4 @@
-from backend.application.services.repository.base import BaseRepositoryService
+from application.services.repository.base import BaseRepositoryService
 
 
 class WhitelistService(BaseRepositoryService):

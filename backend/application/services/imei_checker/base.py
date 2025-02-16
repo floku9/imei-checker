@@ -1,6 +1,6 @@
 import abc
-from backend.api.dto.imei_checker import ImeiInfoDTO
-from backend.application.interactors.imei_checker_client.base import BaseAPIImeiCheckerClient
+from api.dto.imei_checker import ImeiInfoDTO
+from application.interactors.imei_checker_client.base import BaseAPIImeiCheckerClient
 
 
 class BaseImeiCheckerService(abc.ABC):

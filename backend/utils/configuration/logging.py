@@ -1,7 +1,7 @@
 from loguru import logger
 import sys
 
-sys.tracebacklimit = 1
+
 # Configure loguru
 logger.remove()  # Remove default handler
 logger.add(

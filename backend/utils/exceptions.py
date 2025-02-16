@@ -1,4 +1,4 @@
-from typing import Any, Optional
+from typing import Optional
 
 
 class RequestException(Exception):
@@ -11,7 +11,7 @@ class RequestException(Exception):
         return (
             f"RequestException("
             f"status_code={self.status_code}, "
-            f"detail={repr(self.detail)}, "
+            f"detail={repr(self.detail)}, " 
             f"error_info={repr(self.error_info)})"
         )
 

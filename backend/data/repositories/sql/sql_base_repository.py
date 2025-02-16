@@ -20,8 +20,8 @@ class SQLBaseRepositoryAsync(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    async def update(self, id: int, data: dict[str, Any]):
+    async def update(self, idx: int, data: dict[str, Any]):
         raise NotImplementedError
 
-    async def delete(self, id: int):
+    async def delete(self, idx: int):
         raise NotImplementedError

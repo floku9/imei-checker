@@ -1,9 +1,9 @@
-from backend.data.db.models.user import User
-from backend.data.db.models.whitelist import Whitelist
-from backend.data.repositories.sql.orm.generic_repository import GenericORMRepository
+from data.db.models.user import User
+from data.db.models.whitelist import Whitelist
+from data.repositories.sql.orm.generic_repository import GenericORMRepository
 
 
-class TelegramUserRepository(GenericORMRepository[User]):
+class UserRepository(GenericORMRepository[User]):
     model = User
 
 

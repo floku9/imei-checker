@@ -1,15 +1,12 @@
 from aiohttp import ClientSession, ClientTimeout
 
-from backend.utils.configuration.logging import get_logger
+from utils.configuration.logging import get_logger
 
 from .base import BaseAPIImeiCheckerClient
-from .settings import (
-    IMEIApiSettings,
-    imei_api_settings,
-    API_REQUEST_TIMEOUT,
-)
-from backend.utils.exceptions import RequestException
+from settings import imei_api_settings, IMEIApiSettings
+from utils.exceptions import RequestException
 
+API_REQUEST_TIMEOUT = 20
 logger = get_logger()
 
 
