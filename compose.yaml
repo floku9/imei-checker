@@ -1,0 +1,46 @@
+services:
+  db:
+    image: postgres:13
+    container_name: imei-checker-db
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "5430:${POSTGRES_PORT}"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_PASSWORD} -h ${POSTGRES_HOST} -p ${POSTGRES_PORT}"]
+      interval: 5s  
+      retries: 5
+      timeout: 3s
+    networks:
+      - imei-checker-network
+
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: imei-checker-backend
+    env_file:
+      - ./backend/.env.dev-compose
+    environment:
+      - ENV_STATE=.dev-compose
+    depends_on:
+      db:
+        condition: service_healthy
+    ports: 
+      - "8000:8000"
+    command: >
+      sh -c "poetry run alembic upgrade head && 
+      poetry run uvicorn api.app:app --host ${BACKEND_HOST} --port ${BACKEND_PORT}"
+    networks:
+      - imei-checker-network
+
+
+volumes:
+  pg_data:
+
+networks:
+  imei-checker-network: 
+    driver: bridge
