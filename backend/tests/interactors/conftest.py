@@ -1,6 +1,6 @@
 import os
 import pytest_asyncio
-from backend.application.interactors.imei_checker_client.api import APIImeiCheckerClient
+from application.interactors.imei_checker_client.api import APIImeiCheckerClient
 
 
 @pytest_asyncio.fixture
