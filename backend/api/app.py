@@ -1,10 +1,8 @@
 import logging
-import sys
 from fastapi import FastAPI
 import uvicorn
 from api.routes.auth import router as auth_router
 from api.routes.imei_checker.base import imei_router
-from settings import server_settings
 
 app = FastAPI(
     title="IMEI Checker API",
@@ -23,6 +21,3 @@ async def startup_event():
     handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
     logger.addHandler(handler)
 
-
-if __name__ == "__main__":
-    uvicorn.run(app, host=server_settings.BACKEND_HOST, port=server_settings.BACKEND_PORT)

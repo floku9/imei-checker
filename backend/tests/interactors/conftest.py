@@ -3,7 +3,7 @@ import pytest_asyncio
 from application.interactors.imei_checker_client.api import APIImeiCheckerClient
 
 
-@pytest_asyncio.fixture
+@pytest_asyncio.fixture(scope="module")
 def imei_checker_test_client() -> APIImeiCheckerClient:
     client = APIImeiCheckerClient(service_id=14)
     api_test_key: str = os.getenv("IMEI_API_KEY_TEST")

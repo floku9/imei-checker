@@ -27,17 +27,6 @@ class JWTSettings(BaseSettings):
     model_config = SettingsConfigDict(env_file=CURRENT_ENV_FILE, extra="ignore")
 
 
-class ServerSettings(BaseSettings):
-    BACKEND_HOST: str
-    BACKEND_PORT: int
-
-    @property
-    def API_URL(self) -> str:
-        return f"http://{self.BACKEND_HOST}:{self.BACKEND_PORT}"
-
-    model_config = SettingsConfigDict(env_file=CURRENT_ENV_FILE, extra="ignore")
-
-
 class IMEIApiSettings(BaseSettings):
     IMEI_API_KEY: str
 
@@ -45,6 +34,5 @@ class IMEIApiSettings(BaseSettings):
 
 
 imei_api_settings = IMEIApiSettings()
-server_settings = ServerSettings()
 db_settings = DBSettings()
 jwt_settings = JWTSettings()

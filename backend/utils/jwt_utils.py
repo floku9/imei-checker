@@ -8,7 +8,7 @@ def create_jwt_token(data: dict, expires_delta: Optional[timedelta] = None) -> s
     to_encode = data.copy()
     if expires_delta is None:
         expires_delta = timedelta(minutes=jwt_settings.JWT_ACCESS_TOKEN_EXPIRE_MINUTES)
-    to_encode.update({"exp": datetime.now() + expires_delta, "iat": datetime.now(tz=timezone.utc)})
+    to_encode.update({"exp": datetime.now(tz=timezone.utc) + expires_delta, "iat": datetime.now(tz=timezone.utc)})
     return jwt.encode(to_encode, jwt_settings.JWT_SECRET_KEY, algorithm=jwt_settings.JWT_ALGORITHM)
 
 

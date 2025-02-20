@@ -8,9 +8,9 @@ class TokenResponseDTO(BaseDTO):
 
 class UserDetailDTO(BaseDTO):
     telegram_id: int
-    username: Optional[str]
-    first_name: Optional[str]
-    last_name: Optional[str]
+    username: Optional[str] = None
+    first_name: Optional[str] = None
+    last_name: Optional[str] = None
 
 
 class UserCreateDTO(BaseDTO):
