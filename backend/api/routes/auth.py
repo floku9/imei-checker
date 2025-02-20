@@ -1,4 +1,3 @@
-from datetime import timedelta
 from fastapi import APIRouter, Depends, HTTPException
 from api.dependencies import get_users_service, get_whitelist_service
 from api.dto.auth import UserDetailDTO, UserCreateDTO, TokenResponseDTO

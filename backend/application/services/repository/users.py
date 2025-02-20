@@ -11,6 +11,6 @@ class UsersService(BaseRepositoryService):
         return None
 
     async def add_telegram_user(self, user: UserDetailDTO) -> UserCreateDTO:
-        model = await self.repository.create(user.dict())
+        model = await self.repository.create(user.model_dump())
 
         return UserCreateDTO(id=model.id)

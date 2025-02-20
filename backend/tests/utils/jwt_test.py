@@ -10,7 +10,6 @@ def jwt_data() -> dict:
     return {"user_id": 123}
 
 
-@pytest.mark.asyncio
 def test_create_jwt_token(jwt_data: dict):
     jwt = create_jwt_token(data=jwt_data, expires_delta=timedelta(seconds=5))
     assert jwt is not None
