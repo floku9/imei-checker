@@ -22,7 +22,7 @@ async def get_token_by_telegram_id(
     if not await whitelist_service.is_user_whitelisted(user.telegram_id):
         raise HTTPException(status_code=401, detail="User is not whitelisted")
 
-    jwt = create_jwt_token({"user_id": telegram_id}, expires_delta=timedelta(seconds=5))
+    jwt = create_jwt_token({"user_id": telegram_id})
     return TokenResponseDTO(token=jwt)
 
 
