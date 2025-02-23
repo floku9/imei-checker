@@ -77,3 +77,4 @@ l10n/
 # Excluded files and directories
 !yarn.lock
 !build/
+bot/rand_test.py

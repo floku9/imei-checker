@@ -1,14 +1,17 @@
 from urllib.parse import urljoin
 from aiohttp import ClientSession
-from services.api.base import BaseAPIService
-from services.dto.auth import RegistryUserDTO
+from application.interactors.api.base import BaseAPIClient
+from application.dto.auth import RegistryUserDTO
 from settings import backend_settings
 from utils.exceptions import RequestException
 
 
-class AuthApiService(BaseAPIService):
+class AuthApiClient(BaseAPIClient):
+    _backend_url = backend_settings.BACKEND_URL
+    _auth_route = "auth/"
+
     async def __aenter__(self):
-        self._client_session = ClientSession(base_url=urljoin(backend_settings.BACKEND_URL, "auth"))
+        self._client_session = ClientSession(base_url=urljoin(self._backend_url, self._auth_route))
         return self
 
     async def __aexit__(self, *err):
@@ -31,3 +34,6 @@ class AuthApiService(BaseAPIService):
                 raise RequestException(status_code=response.status, error_info=json_response)
 
             return json_response
+
+
+auth_api_client = AuthApiClient()
