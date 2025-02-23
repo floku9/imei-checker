@@ -1,5 +1,6 @@
 import os
 from typing import Optional
+
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 ENV_STATE = os.getenv("ENV_STATE", ".dev")
@@ -27,3 +28,4 @@ class RedisSettings(EnvSettings):
 
 backend_settings = BackendSettings()
 redis_settings = RedisSettings()
+cache_settings = CacheSettings()
