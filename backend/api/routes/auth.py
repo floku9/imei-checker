@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
+
 from api.dependencies import get_users_service, get_whitelist_service
-from api.dto.auth import UserDetailDTO, UserCreateDTO, TokenResponseDTO
+from api.dto.auth import TokenResponseDTO, UserAddDTO, UserCreateDTO
 from application.services.repository.users import UsersService
 from application.services.repository.whitelist import WhitelistService
 from utils.jwt_utils import create_jwt_token
@@ -18,7 +19,7 @@ async def get_token_by_telegram_id(
     if not user:
         raise HTTPException(status_code=401, detail="User not found")
 
-    if not await whitelist_service.is_user_whitelisted(user.telegram_id):
+    if not await whitelist_service.is_user_whitelisted(user.id):
         raise HTTPException(status_code=401, detail="User is not whitelisted")
 
     jwt = create_jwt_token({"user_id": telegram_id})
@@ -27,7 +28,7 @@ async def get_token_by_telegram_id(
 
 @router.post("/add_tg_user", response_model=UserCreateDTO)
 async def add_telegram_user(
-    user: UserDetailDTO,
+    user: UserAddDTO,
     users_service: UsersService = Depends(get_users_service),
 ) -> UserCreateDTO:
     user_in_db = await users_service.get_by_telegram_id(user.telegram_id)
