@@ -2,7 +2,6 @@ services:
   db:
     image: postgres:13
     container_name: imei-checker-db
-    restart: always
     env_file:
       - .env
     ports:
