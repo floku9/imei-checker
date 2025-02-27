@@ -1,11 +1,10 @@
 import pytest
 import pytest_asyncio
-import sqlalchemy
+from sqlalchemy.exc import IntegrityError
 
-from api.dto.auth import UserCreateDTO, UserDetailDTO
+from api.dto.auth import UserAddDTO
 from application.services.repository.users import UsersService
 from data.repositories.sql.orm.db_models_repositories import UserRepository
-from sqlalchemy.exc import IntegrityError
 
 
 @pytest_asyncio.fixture(scope="function")
@@ -30,7 +29,7 @@ async def test_get_user_by_telegram_id_not_found(users_test_service: UsersServic
 
 @pytest.mark.asyncio
 async def test_add_user_to_db(users_test_service: UsersService):
-    user = UserDetailDTO(telegram_id=123456789, first_name="John", last_name="Doe")
+    user = UserAddDTO(telegram_id=123456789, first_name="John", last_name="Doe")
     db_user = await users_test_service.add_telegram_user(user)
 
     assert db_user.id is not None
@@ -38,7 +37,7 @@ async def test_add_user_to_db(users_test_service: UsersService):
 
 @pytest.mark.asyncio
 async def test_add_user_to_db_already_exists(users_test_service: UsersService):
-    user = UserDetailDTO(telegram_id=123, username="user1")
+    user = UserAddDTO(telegram_id=123, username="user1")
     with pytest.raises(IntegrityError) as e:
         await users_test_service.add_telegram_user(user)
 

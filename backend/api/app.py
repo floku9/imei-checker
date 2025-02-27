@@ -1,6 +1,5 @@
 import logging
 from fastapi import FastAPI
-import uvicorn
 from api.routes.auth import router as auth_router
 from api.routes.imei_checker.base import imei_router
 
@@ -20,4 +19,3 @@ async def startup_event():
     handler = logging.StreamHandler()
     handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
     logger.addHandler(handler)
-

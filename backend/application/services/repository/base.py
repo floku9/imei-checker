@@ -1,4 +1,3 @@
-from typing import Generic, TypeVar
 from data.repositories.sql.sql_base_repository import SQLBaseRepositoryAsync
 
 
