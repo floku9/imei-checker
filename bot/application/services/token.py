@@ -1,14 +1,15 @@
-from application.interactors.api.auth import AuthApiClient
+from application.dto.auth import GetTokenDTO
+from application.interactors.api.auth import BaseAuthAPIClient
 from data.cache.base import BaseCache
 from settings import cache_settings
 
 
 class TokenService:
-    def __init__(self, cache: BaseCache, auth_client: AuthApiClient):
+    def __init__(self, cache: BaseCache, auth_client: BaseAuthAPIClient):
         self.cache = cache
         self.auth_client = auth_client
 
-    async def get_token(self, telegram_user_id: str) -> str:
+    async def get_token(self, telegram_user_id: str) -> GetTokenDTO:
         token = self.cache.get(telegram_user_id)
         if token is None:
             token = await self.auth_client.auth_by_telegram_id(telegram_user_id)

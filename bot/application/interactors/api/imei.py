@@ -9,7 +9,6 @@ from settings import backend_settings
 
 
 class IMEIClientV1(BaseAPIClient):
-
     _api_version = "v1/"
     _backend_url = backend_settings.BACKEND_URL
 
